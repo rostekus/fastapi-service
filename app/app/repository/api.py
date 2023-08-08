@@ -1,6 +1,6 @@
 from typing import Protocol
 
-from app.relevance.model import RelevanceModel
+from app.relevance.api import RelevanceModel
 
 
 class ModelDataBase(Protocol):
