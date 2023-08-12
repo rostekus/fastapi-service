@@ -1,26 +1,38 @@
+from __future__ import annotations
+
+import threading
 from typing import Optional
 
 from app.relevance.api import RelevanceModel
 
-
-class Singleton(object):
-    _instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if not cls._instance:
-            cls._instance = super(Singleton, cls).__new__(cls, *args, **kwargs)
-        return cls._instance
+lock = threading.Lock()
 
 
-class InMemoryModelDatabase(Singleton):
+class Singleton(type):
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            with lock:
+                if cls not in cls._instances:
+                    cls._instances[cls] = super(Singleton, cls).__call__(
+                        *args, **kwargs
+                    )
+        return cls._instances[cls]
+
+
+class InMemoryModelDatabase(metaclass=Singleton):
     def __init__(self):
         self.models: dict[str, RelevanceModel] = {}
 
     def load(self, model_id: str) -> Optional[RelevanceModel]:
-        return self.model.get(model_id)
+        return self.models[model_id]
 
     def save(self, model: RelevanceModel, model_id: str) -> None:
-        self.model[model_id] = model
+        self.models[model_id] = model
+
+    def get_all(self) -> list[str]:
+        return list(self.models.keys())
 
 
 def create_inmemory_db_session() -> InMemoryModelDatabase:
