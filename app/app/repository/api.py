@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Protocol
 
 from app.relevance.api import RelevanceModel
@@ -8,4 +10,7 @@ class ModelDataBase(Protocol):
         pass
 
     def save(model: RelevanceModel, model_id: str) -> None:
+        pass
+
+    def get_all() -> list[str]:
         pass
