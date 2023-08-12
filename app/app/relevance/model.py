@@ -11,18 +11,17 @@ logging.basicConfig(level=logging.INFO)
 
 
 class ImplementationRelevanceModel:
-    def __init__(self):
+    def __init__(self, num_threads: int = 4):
         self.model: list[LinearRegression] = []
+        self.n_thread: int = num_threads
 
-    def train(
-        self, input_data: list[float()], li: int, k: int, num_threads: int = 4
-    ) -> None:
+    def train(self, input_data: list[float()], li: int, k: int) -> None:
         logging.info("begin training")
 
         divided_datasets = self._devide_data(input_data, li)
         argument_sets = [(subset, k) for subset in divided_datasets]
         with concurrent.futures.ThreadPoolExecutor(
-            max_workers=num_threads
+            max_workers=self.n_thread
         ) as executor:
             futures = [
                 executor.submit(self._calculate_representativeness, *args)
