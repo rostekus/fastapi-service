@@ -11,11 +11,43 @@ logging.basicConfig(level=logging.INFO)
 
 
 class ImplementationRelevanceModel:
+    """
+    Implementation of a Relevance Model for data training and prediction.
+
+    This class uses a combination of linear regression and nearest neighbors
+    to train and predict data.
+
+    Args:
+        num_threads (int): Number of threads to use
+        for parallel processing during training.
+
+    Attributes:
+        model (list[LinearRegression]): List of LinearRegression
+        submodels trained during training.
+        n_thread (int): Number of threads used for parallel
+        processing during training.
+
+    """
+
     def __init__(self, num_threads: int = 4):
         self.model: list[LinearRegression] = []
         self.n_thread: int = num_threads
 
     def train(self, input_data: list[float()], li: int, k: int) -> None:
+        """
+        Train the Relevance Model using input data.
+
+        Args:
+            input_data (list[float]): List of input data points.
+            li (int): Number of parts to divide the data for
+            parallel processing.
+            k (int): Number of neighbors to consider
+            for representativeness calculation.
+
+        Returns:
+            list[float]: List of predicted values for the input data.
+
+        """
         logging.info("begin training")
 
         divided_datasets = self._devide_data(input_data, li)
@@ -43,13 +75,30 @@ class ImplementationRelevanceModel:
         data_copy = input_data.copy()
         return np.array_split(data_copy, li)
 
-    def create_submodel_model(self, X: list[float], y: float):
+    def _create_submodel_model(self, X: list[float], y: float):
         X = np.array(X).reshape(-1, 1)  # Reshape X into a 2D array
         model = LinearRegression()
         model.fit(X, y)
         return model
 
     def predict(self, X: list[float]) -> list[float]:
+        """
+        Predict the relevance scores for the given input data.
+
+        This method predicts the relevance scores for the input data using the
+        submodels trained during training.
+
+        Args:
+            X (list[float]): List of input data points for which to
+            predict relevance scores.
+
+        Returns:
+            list[float]: List of predicted relevance scores for the input data.
+
+        Raises:
+            ValueError: If there are no models trained.
+
+        """
         if not len(self.model):
             raise ValueError("there is no model trained")
         X = np.array(X).reshape(-1, 1)  # Reshape X into a 2D array
@@ -74,7 +123,7 @@ class ImplementationRelevanceModel:
             1 / (1 + avg_dist) for avg_dist in avg_distances
         ]
         self.model.append(
-            self.create_submodel_model(arr, representativeness_scores)
+            self._create_submodel_model(arr, representativeness_scores)
         )
 
 
