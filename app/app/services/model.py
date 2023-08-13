@@ -14,7 +14,7 @@ class ModelService(BaseService):
         self, training_data: list[float], li: int, k: int
     ) -> tuple[list[float], str]:
         """Train model and save to db"""
-        if li <= 0 or  k <= 0 or  k > li:
+        if li <= 0 or k <= 0 or k > li:
             raise ValueError("incorrect k l num")
         model = create_implementation_relevence_model()
         model_id = str(uuid.uuid4())

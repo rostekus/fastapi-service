@@ -10,13 +10,17 @@ from const import MODEL_URL
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.repository.api import ModelDataBase
-from app.repository.inmemorydb import (InMemoryModelDatabase,
-                                       create_inmemory_db_session)
-from app.schemas.model import (GetAllModelsResponseSchema,
-                               PredictDataRequestSchema,
-                               PredictDataResponseSchema,
-                               RelevanceResponseSchema,
-                               TrainingDataRequestSchema)
+from app.repository.inmemorydb import (
+    InMemoryModelDatabase,
+    create_inmemory_db_session,
+)
+from app.schemas.model import (
+    GetAllModelsResponseSchema,
+    PredictDataRequestSchema,
+    PredictDataResponseSchema,
+    RelevanceResponseSchema,
+    TrainingDataRequestSchema,
+)
 from app.services.model import ModelService
 
 logging.basicConfig(level=logging.INFO)
