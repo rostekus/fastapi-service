@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from const import OPEN_API_DESCRIPTION, OPEN_API_TITLE
+from app.const import OPEN_API_DESCRIPTION, OPEN_API_TITLE
 from fastapi import FastAPI
 from version import __version__
 
@@ -14,8 +14,6 @@ app = FastAPI(
 )
 
 app.include_router(model_router)
-
-traing = ""
 
 
 @app.get("/health")
