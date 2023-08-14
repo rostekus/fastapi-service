@@ -1,3 +1,5 @@
+[![Python CI](https://github.com/rostekus/fastapi-service/actions/workflows/python-ci.yaml/badge.svg)](https://github.com/rostekus/fastapi-service/actions/workflows/python-ci.yaml)
+
 # FastAPI Model Relevance Service
 
 This repository contains a REST service implemented in Python using FastAPI that allows for training and querying a model for object relevance.
