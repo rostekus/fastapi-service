@@ -38,7 +38,9 @@ For more information run service and have a look on OpenAPI docs:
 ```bash
 http://localhost/docs
 ```
-![screencapture-localhost-docs-2023-08-14-18_57_09](https://github.com/rostekus/fastapi-service/assets/34031791/366066c2-79ed-4a43-8e8c-f90f40454b74)
+
+![screenshot](https://github.com/rostekus/fastapi-service/assets/34031791/a46020e7-82c5-4043-8deb-ead55c0fdc0e)
+
 
 ## Project Structure - Three-Layer Architecture
 
