@@ -2,12 +2,11 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 import traceback
 from datetime import datetime
 from http import HTTPStatus
 
-import os
-from app.const import MODEL_URL
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.app.repository.api import ModelDataBase
@@ -23,6 +22,7 @@ from app.app.schemas.model import (
     TrainingDataRequestSchema,
 )
 from app.app.services.model import ModelService
+from app.const import MODEL_URL
 
 logging.basicConfig(level=logging.INFO)
 router = APIRouter(prefix="/" + MODEL_URL)

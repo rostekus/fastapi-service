@@ -6,7 +6,7 @@ from app.app.relevance.api import RelevanceModel
 
 
 class ModelDataBase(Protocol):
-    def load(model_id: str) -> RelevanceModen.l:
+    def load(model_id: str) -> RelevanceModel:
         pass
 
     def save(model: RelevanceModel, model_id: str) -> None:
