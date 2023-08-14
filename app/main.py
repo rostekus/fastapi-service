@@ -1,10 +1,10 @@
 from __future__ import annotations
 
+
+from app.version import __version__
 from app.const import OPEN_API_DESCRIPTION, OPEN_API_TITLE
 from fastapi import FastAPI
-from version import __version__
-
-from app.routers.model import router as model_router
+from app.app.routers.model import router as model_router
 
 app = FastAPI(
     title=OPEN_API_TITLE,

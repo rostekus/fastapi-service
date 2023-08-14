@@ -3,8 +3,8 @@ from __future__ import annotations
 import logging
 import uuid
 
-from app.relevance.model import create_implementation_relevence_model
-from app.services.base import BaseService
+from app.app.relevance.model import create_implementation_relevence_model
+from app.app.services.base import BaseService
 
 logging.basicConfig(level=logging.INFO)
 

@@ -2,11 +2,11 @@ from __future__ import annotations
 
 from typing import Protocol
 
-from app.relevance.api import RelevanceModel
+from app.app.relevance.api import RelevanceModel
 
 
 class ModelDataBase(Protocol):
-    def load(model_id: str) -> RelevanceModel:
+    def load(model_id: str) -> RelevanceModen.l:
         pass
 
     def save(model: RelevanceModel, model_id: str) -> None:

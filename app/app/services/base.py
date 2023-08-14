@@ -1,4 +1,4 @@
-from app.repository.api import ModelDataBase
+from app.app.repository.api import ModelDataBase
 
 
 class DataBaseProvider:
