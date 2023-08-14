@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "e5be0f86-5b48-45b2-bc8d-9ab8a846906f",
+		"name": "fastapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20033428"
+	},
+	"item": [
+		{
+			"name": "get_all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/model",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"model"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "train",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"k\": 1,\n    \"l\": 1,\n    \"data\": [\n        1.0,\n        2.0,\n        3.0,\n        4.0,\n        5.0\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/model/train",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"model",
+						"train"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "predict",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"data\": [1.0, 2.0, 3.0, 4.0, 7.0],\n             \"id\": \"2fb8703c-cf78-447c-afaf-95ddcbab4d80\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/model/predict",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"model",
+						"predict"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
