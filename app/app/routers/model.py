@@ -6,22 +6,23 @@ import traceback
 from datetime import datetime
 from http import HTTPStatus
 
-from const import MODEL_URL
+import os
+from app.const import MODEL_URL
 from fastapi import APIRouter, Depends, HTTPException
 
-from app.repository.api import ModelDataBase
-from app.repository.inmemorydb import (
+from app.app.repository.api import ModelDataBase
+from app.app.repository.inmemorydb import (
     InMemoryModelDatabase,
     create_inmemory_db_session,
 )
-from app.schemas.model import (
+from app.app.schemas.model import (
     GetAllModelsResponseSchema,
     PredictDataRequestSchema,
     PredictDataResponseSchema,
     RelevanceResponseSchema,
     TrainingDataRequestSchema,
 )
-from app.services.model import ModelService
+from app.app.services.model import ModelService
 
 logging.basicConfig(level=logging.INFO)
 router = APIRouter(prefix="/" + MODEL_URL)
@@ -83,7 +84,8 @@ async def train(
     try:
         data, model_id = ModelService(db).train(training_data.data, 1, 1)
         # simulate long time processing
-        await asyncio.sleep(10)
+        if os.environ.get("ENV") == "PROD":
+            await asyncio.sleep(10)
     except Exception as e:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         error_message = f"{timestamp} - {str(e)}"

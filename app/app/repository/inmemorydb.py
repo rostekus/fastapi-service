@@ -3,7 +3,7 @@ from __future__ import annotations
 import threading
 from typing import Optional
 
-from app.relevance.api import RelevanceModel
+from app.app.relevance.api import RelevanceModel
 
 lock = threading.Lock()
 
